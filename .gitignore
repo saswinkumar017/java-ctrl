@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+src-tauri/target/
+target/
+
+# frontend build
+dist/
+dist-ssr/
+*.local
+
+# tauri generated
+src-tauri/gen/
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# os
+.DS_Store
+Thumbs.db
+
+# app artifacts
+*.hprof
+*.jfr
+*.log
+dumps/
+*.db
+demo/*.class

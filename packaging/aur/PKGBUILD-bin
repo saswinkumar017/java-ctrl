@@ -1,0 +1,54 @@
+# Binary AUR package — installs the prebuilt AppImage (no Rust / Node needed).
+# Rename to PKGBUILD in your AUR package directory and generate .SRCINFO with
+# `makepkg --printsrcinfo > .SRCINFO`.
+pkgname=java-control-centre-bin
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Desktop control centre for JDKs, JVM processes, memory, GC, threads, heap dumps and Spring Boot Actuator (binary release)"
+arch=('x86_64')
+url="https://github.com/java-control-centre/java-control-centre"
+license=('MIT')
+depends=('webkit2gtk-4.1' 'gtk3' 'libayatana-appindicator' 'fuse2')
+optdepends=(
+  'jdk21-openjdk: required for jcmd-based JVM monitoring and heap dumps'
+  'jdk17-openjdk: older JDK alternative for jcmd-based monitoring'
+)
+source=(
+  "java-control-centre-${pkgver}.AppImage::https://github.com/java-control-centre/java-control-centre/releases/download/v${pkgver}/java-control-centre_${pkgver}_amd64.AppImage"
+  "icon.png::https://raw.githubusercontent.com/java-control-centre/java-control-centre/main/src-tauri/icons/128x128.png"
+  "LICENSE::https://raw.githubusercontent.com/java-control-centre/java-control-centre/main/LICENSE"
+)
+sha256sums=('SKIP' 'SKIP' 'SKIP')
+
+package() {
+  install -d "$pkgdir/opt/java-control-centre" \
+    "$pkgdir/usr/bin" \
+    "$pkgdir/usr/share/applications" \
+    "$pkgdir/usr/share/icons/hicolor/128x128/apps" \
+    "$pkgdir/usr/share/licenses/$pkgname"
+
+  install -m755 "$srcdir/java-control-centre-${pkgver}.AppImage" \
+    "$pkgdir/opt/java-control-centre/java-control-centre.AppImage"
+
+  printf '#!/bin/sh\nexec /opt/java-control-centre/java-control-centre.AppImage "$@"\n' \
+    > "$pkgdir/usr/bin/java-control-centre"
+  chmod 755 "$pkgdir/usr/bin/java-control-centre"
+
+  cat > "$pkgdir/usr/share/applications/java-control-centre.desktop" <<'EOF'
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Java Control Centre
+GenericName=JVM Control Centre
+Comment=Discover JDKs, monitor JVMs, analyse heap dumps and Spring Boot Actuator
+Exec=/usr/bin/java-control-centre
+Icon=java-control-centre
+Terminal=false
+Categories=Development;IDE;Utility;
+Keywords=java;jvm;jdk;heap;gc;spring;
+EOF
+
+  install -m644 "$srcdir/icon.png" \
+    "$pkgdir/usr/share/icons/hicolor/128x128/apps/java-control-centre.png"
+  install -m644 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
