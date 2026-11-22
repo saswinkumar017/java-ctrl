@@ -24,17 +24,16 @@ jobs:
         with:
           workspaces: "src-tauri -> target"
       - run: npm ci
-      - name: Build and publish NSIS installer
+      - name: Build NSIS installer
         uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: "Java Control Centre ${{ github.ref_name }}"
-          releaseBody: "Windows NSIS installer (auto-installs a JDK when missing), Linux .deb and AppImage packages. Omarchy/Arch users can use installers/omarchy/install.sh or the java-control-centre-bin AUR package."
-          releaseDraft: true
-          prerelease: false
           args: --bundles nsis
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: src-tauri/target/release/bundle/nsis/*.exe
+          if-no-files-found: error
 
   linux:
     name: Linux (.deb + AppImage)
@@ -60,13 +59,15 @@ jobs:
             curl wget file libxdo-dev libssl-dev \
             patchelf libfuse2
       - run: npm ci
-      - name: Build and publish Linux packages
+      - name: Build Linux packages
         uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: "Java Control Centre ${{ github.ref_name }}"
-          releaseDraft: true
-          prerelease: false
           args: --bundles deb,appimage
+      - name: Upload Linux packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-packages
+          path: |
+            src-tauri/target/release/bundle/deb/*.deb
+            src-tauri/target/release/bundle/appimage/*.AppImage
+          if-no-files-found: error
