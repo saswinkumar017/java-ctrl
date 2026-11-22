@@ -28,9 +28,9 @@ package() {
     "$pkgdir/usr/share/licenses/$pkgname"
 
   install -m755 "$srcdir/java-control-centre-${pkgver}.AppImage" \
-    "$pkgdir/opt/saswinkumar017/java-ctrl.AppImage"
+    "$pkgdir/opt/java-control-centre/java-control-centre.AppImage"
 
-  printf '#!/bin/sh\nexec /opt/saswinkumar017/java-ctrl.AppImage "$@"\n' \
+  printf '#!/bin/sh\nexec /opt/java-control-centre/java-control-centre.AppImage "$@"\n' \
     > "$pkgdir/usr/bin/java-control-centre"
   chmod 755 "$pkgdir/usr/bin/java-control-centre"
 
