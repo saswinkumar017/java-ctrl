@@ -6,7 +6,7 @@ pkgver=0.1.0
 pkgrel=1
 pkgdesc="Desktop control centre for JDKs, JVM processes, memory, GC, threads, heap dumps and Spring Boot Actuator (binary release)"
 arch=('x86_64')
-url="https://github.com/java-control-centre/java-control-centre"
+url="https://github.com/saswinkumar017/java-ctrl"
 license=('MIT')
 depends=('webkit2gtk-4.1' 'gtk3' 'libayatana-appindicator' 'fuse2')
 optdepends=(
@@ -14,9 +14,9 @@ optdepends=(
   'jdk17-openjdk: older JDK alternative for jcmd-based monitoring'
 )
 source=(
-  "java-control-centre-${pkgver}.AppImage::https://github.com/java-control-centre/java-control-centre/releases/download/v${pkgver}/java-control-centre_${pkgver}_amd64.AppImage"
-  "icon.png::https://raw.githubusercontent.com/java-control-centre/java-control-centre/main/src-tauri/icons/128x128.png"
-  "LICENSE::https://raw.githubusercontent.com/java-control-centre/java-control-centre/main/LICENSE"
+  "java-control-centre-${pkgver}.AppImage::https://github.com/saswinkumar017/java-ctrl/releases/download/v${pkgver}/java-control-centre_${pkgver}_amd64.AppImage"
+  "icon.png::https://raw.githubusercontent.com/saswinkumar017/java-ctrl/master/src-tauri/icons/128x128.png"
+  "LICENSE::https://raw.githubusercontent.com/saswinkumar017/java-ctrl/master/LICENSE"
 )
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
@@ -28,9 +28,9 @@ package() {
     "$pkgdir/usr/share/licenses/$pkgname"
 
   install -m755 "$srcdir/java-control-centre-${pkgver}.AppImage" \
-    "$pkgdir/opt/java-control-centre/java-control-centre.AppImage"
+    "$pkgdir/opt/saswinkumar017/java-ctrl.AppImage"
 
-  printf '#!/bin/sh\nexec /opt/java-control-centre/java-control-centre.AppImage "$@"\n' \
+  printf '#!/bin/sh\nexec /opt/saswinkumar017/java-ctrl.AppImage "$@"\n' \
     > "$pkgdir/usr/bin/java-control-centre"
   chmod 755 "$pkgdir/usr/bin/java-control-centre"
 

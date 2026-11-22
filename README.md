@@ -75,7 +75,7 @@ If automatic Java installation fails, the installer tells you what to install an
 - **Arch / Omarchy**: use the one-line installer, the binary AUR package, or build from source:
 
   ```bash
-  curl -fsSL https://raw.githubusercontent.com/java-control-centre/java-control-centre/main/installers/omarchy/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/saswinkumar017/java-ctrl/master/installers/omarchy/install.sh | bash
   # or: JCC_VERSION=0.1.0 ./installers/omarchy/install.sh
   # or: yay -S java-control-centre-bin     # packaging/aur/PKGBUILD-bin
   ```

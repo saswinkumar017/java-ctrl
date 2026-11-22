@@ -5,11 +5,11 @@ pkgver=0.1.0
 pkgrel=1
 pkgdesc="Desktop control centre for JDKs, JVM processes, memory, GC, threads, heap dumps and Spring Boot Actuator"
 arch=('x86_64')
-url="https://github.com/java-control-centre/java-control-centre"
+url="https://github.com/saswinkumar017/java-ctrl"
 license=('MIT')
 depends=('webkit2gtk-4.1' 'gtk3' 'libayatana-appindicator' 'jdk17-openjdk')
 makedepends=('git' 'nodejs' 'npm' 'rust' 'cargo' 'base-devel' 'patchelf')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/java-control-centre/java-control-centre/archive/refs/tags/v$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/saswinkumar017/java-ctrl/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('SKIP')
 
 build() {

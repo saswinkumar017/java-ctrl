@@ -2,15 +2,15 @@
 # Java Control Centre — Omarchy / Arch Linux installer.
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/java-control-centre/java-control-centre/main/installers/omarchy/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/saswinkumar017/java-ctrl/master/installers/omarchy/install.sh | bash
 #   JCC_VERSION=0.1.0 ./install.sh
-#   JCC_REPO=your-org/java-control-centre ./install.sh
+#   JCC_REPO=saswinkumar017/java-ctrl ./install.sh
 #
 # Installs the prebuilt AppImage from GitHub Releases. No Rust or Node.js needed.
 
 set -euo pipefail
 
-REPO="${JCC_REPO:-java-control-centre/java-control-centre}"
+REPO="${JCC_REPO:-saswinkumar017/java-ctrl}"
 VERSION="${JCC_VERSION:-}"
 BIN_DIR="${XDG_BIN_HOME:-$HOME/.local/bin}"
 DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}"
