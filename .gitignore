@@ -32,3 +32,4 @@ Thumbs.db
 dumps/
 *.db
 demo/*.class
+demo/jcc-memory-lab/out/

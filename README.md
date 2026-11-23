@@ -102,6 +102,8 @@ java -Dserver.port=8080 -Xmx256m -cp demo DemoApp
 
 It allocates continuously and exposes a small Actuator-compatible endpoint on `http://localhost:8080/actuator`. Select the `DemoApp` process in JCC, then use **Discover** on the Spring Boot Monitor page.
 
+For a **deterministic memory test**, use `demo/jcc-memory-lab` instead: it retains a known payload (50 MiB by default), allocates known garbage (2 MiB/s), instantiates eight beans through a reflection-based DI container, runs named threads and exposes custom `jcc.lab.*` Actuator metrics. See `demo/jcc-memory-lab/README.md` for the expected-heap arithmetic and which JCC page should show each effect.
+
 ## Limitations
 
 - PerfCounter does not expose an installed-nmethod count, so JCC derives it from `CodeCache` output (`nmethods=`).

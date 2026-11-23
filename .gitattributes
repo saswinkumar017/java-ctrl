@@ -1,5 +1,6 @@
 # Shell / installer scripts must keep LF endings on Linux.
 .gitattributes text eol=lf
+*.java text eol=lf
 *.sh text eol=lf
 *.nsh text eol=lf
 PKGBUILD text eol=lf
